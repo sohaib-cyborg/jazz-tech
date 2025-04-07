@@ -56,7 +56,8 @@ app.post("/contact", upload.single("file"), async (req, res) => {
     };
 
     // Send the email
-    console.log(emailResponse);
+    const emailResponse = await transporter.sendMail(mailOptions);
+    
     res.status(200).json({ success: true, emailResponse });
   } catch (error) {
     res.status(500).json({
